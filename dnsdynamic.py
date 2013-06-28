@@ -79,8 +79,8 @@ def m_self(username, password, again = 0):
   outfile.write(opener.open(urllib2.Request(image_url)).read())
   outfile.close()
 
-  os.system("tesseract /tmp/code.jpg -psm 7 out")
-  code = open("out.txt").read(4)
+  os.system("tesseract /tmp/code.jpg -psm 7 /tmp/out")
+  code = open("/tmp/out.txt").read(4)
   values={'domainName':username, 'password':password, 'checkCode':code}
   data=urllib.urlencode(values)
   urlcontent= opener.open(urllib2.Request(post_url, data)).read()
