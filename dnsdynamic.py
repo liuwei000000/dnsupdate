@@ -62,6 +62,7 @@ def m_self(username, password, again = 0):
     print '读取本地ip出错'
     return None
 
+  #防止本地存储失败而不能更新到服务器
   if ((cip == read_ip()) and \
       (random.randint(1, 40) != 4) and \
       (random.randint(1, 40) != 5)):
