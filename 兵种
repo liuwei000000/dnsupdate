@@ -1,3 +1,23 @@
+?******************************************************************************************
+?******************************************************************************************
+?***
+?******* Please don't delete this information when quoted!
+?******* Assembly (Beta v1.0) by 左賢王漢化組 for RTW1.3-BI_Cht.
+?******* Team member: BIGFEBY, CUX47, GUANXIAN, HOHO5999, ISHITA, JACKY70222, MIGO, MK82
+?*******         QIANBB2004, ROGERTRI, WXY2AB, YLSHD, 8795, 武田信宗.
+?******* Thanks: 游俠網--WWW.NETSHOWBBS.COM .
+?***
+?******************************************************************************************
+?******************************************************************************************
+
+?** Text used for building names and descriptions
+?** Lines that begin with this character are comments
+?** and should not be translated or altered
+?** Items inside curly brackets are tags and should not be translated
+?** The text following each tag on the same, or next line does need to be translated
+?**
+
+
 {barbarian_civ_peasant}		蠻族農民
 
 {barbarian_civ_peasant_descr}
