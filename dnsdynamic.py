@@ -12,6 +12,8 @@ url = r'http://dcp.xinnet.com/Modules/agent/domain/domain_manage.jsp'
 image_url = r'http://dcp.xinnet.com/Modules/agent/domain/validate_picture.jsp'
 post_url = r'http://dcp.xinnet.com/domainLogin.do?method=domainEnter'
 post_url2 = r'http://www.xinnet.com/domainLogin.do'
+post_url3 = r'http://mydns3.xinnet.com/index.jsp'
+post_url4 = r'http://mydns3.xinnet.com/mydns/recordsList.do'
 c_url = r'http://mydns3.xinnet.com/dwr/exec/validateAjaxManage.updateRecords.dwr'
 AGAIN = 3
 
@@ -105,6 +107,29 @@ def m_self(username, password, again = 0):
   data=urllib.urlencode(values)
   request = urllib2.Request(post_url2, data)
   content = opener.open(request).read()
+  domainname = etree.HTML(content).xpath(".//input")[0].get('value');
+  mystring = etree.HTML(content).xpath(".//input")[1].get('value')
+  mystring2 = etree.HTML(content).xpath(".//input")[2].get('value')
+  newstring = etree.HTML(content).xpath(".//input")[3].get('value')
+  source = etree.HTML(content).xpath(".//input")[4].get('value')
+  if (domainname == None or \
+      mystring == None or   \
+      mystring2== None or   \
+      newstring == None or  \
+      source == None):
+    print '页面读取出错'
+    return
+
+  #还需要再post一次
+  values={'DomainName': domainname, 'mystring': mystring, 'mystring2': mystring2, 'newString':newstring, 'source':source }
+  data=urllib.urlencode(values)
+  request = urllib2.Request(post_url3, data)
+  content = opener.open(request).read()
+  #还需要再post一次
+  values={'DomainName': domainname, 'mystring': mystring, 'mystring2': mystring2, 'newString':newstring}
+  data=urllib.urlencode(values)
+  request = urllib2.Request(post_url4, data)
+  content = opener.open(request).read()
 
   node = etree.HTML(content).find(".//table[@id='tbca']//tr[2]/td[2]")
   if (node == None):
@@ -161,9 +186,9 @@ def m_self(username, password, again = 0):
     return None
 
   #做一个简单的判断是否修改成功
-  if (len(content) > 200 or c.find("var s0=null") < 0):
-    print '修改失败'
-    return None
+  #if (len(content) > 200 or c.find("var s0=null") < 0):
+  #  print '修改失败'
+  #  return None
 
   print '修改成功: ', cip
   write_ip(wip)
