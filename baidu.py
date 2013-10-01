@@ -46,3 +46,7 @@ def check():
 
 if __name__ == '__main__':
   check()
+  sleep(17)
+  check()
+  sleep(17)
+  check()
